@@ -10,7 +10,7 @@ final as (
         user_id,
         created_at,
         phone_number,
-        nullif(deleted_at, '') as deleted_at,
+        deleted_at,
         username,
         name,
         sex,

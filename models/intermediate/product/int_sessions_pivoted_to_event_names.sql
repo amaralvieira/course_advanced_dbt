@@ -1,6 +1,6 @@
 {% set event_names = dbt_utils.get_column_values(table=ref('stg_bingeflix__events'), column='event_name') -%}
 
-SELECT
+select
     session_id,
     user_id,
     {% for event_name in event_names %}

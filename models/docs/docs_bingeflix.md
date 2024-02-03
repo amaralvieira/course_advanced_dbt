@@ -63,4 +63,3 @@ When the subscription ended. This value is NULL if the subscription has not had 
 {% docs bingeflix_column_username %}
 The username for login to Bingeflix.
 {% enddocs %}
-

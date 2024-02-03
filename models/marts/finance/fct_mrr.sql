@@ -1,4 +1,4 @@
-{{ config(tags="p0") }}
+{{ config(tags="monthly") }}
 
 -- This model is created following the dbt MRR playbook: https://www.getdbt.com/blog/modeling-subscription-revenue/
 -- Import CTEs
@@ -32,10 +32,10 @@ monthly_subscriptions as (
         ends_at,
         plan_name,
         pricing as monthly_amount,
-        date(date_trunc('month', starts_at)) as start_month,
-        date(date_trunc('month', ends_at)) as end_month
+        {{ dbt.date_trunc("month", "starts_at") }} as start_month,
+        {{ dbt.date_trunc("month", "ends_at") }} as end_month
 
-    from subscriptions 
+    from subscriptions
 
 ),
 
@@ -54,8 +54,10 @@ subscription_periods as (
         -- For users that cancel in the first month, set their end_month to next month because the subscription remains active until the end of the first month
         -- For users who haven't ended their subscription yet (end_month is NULL) set the end_month to one month from the current date (these rows will be removed from the final CTE)
         case
-            when start_month = end_month then dateadd('month', 1, end_month)
-            when end_month is null then date(dateadd('month', 1, date_trunc('month', current_date)))
+            when start_month = end_month
+                then {{- dbt.dateadd("month", 1, "end_month") -}}
+            when end_month is null
+                then {{- dbt.dateadd('month', 1, dbt.date_trunc("month", "current_date")) -}}
             else end_month
         end as end_month
 
@@ -140,7 +142,7 @@ subscription_revenue_by_month as (
 subscription_churn_by_month as (
 
     select
-        dateadd(month, 1, date_month)::date as date_month,
+        {{- dbt.dateadd("month", 1, "date_month") -}} as date_month,
         user_id,
         subscription_id,
         false as is_subscribed_current_month,
@@ -212,7 +214,7 @@ final as (
         -- Add month_retained_number for cohort analysis
         case
             when change_category = 'churn' then null
-            else datediff('month', first_subscription_month, date_month)
+            else {{ dbt.datediff("first_subscription_month", "date_month", "month") }}
         end as month_retained_number
 
     from mrr_with_changes

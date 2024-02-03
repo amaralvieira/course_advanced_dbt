@@ -30,7 +30,7 @@ final as (
 
     from
         date_spine
-        left join events 
+        left join events
             on date_spine.calendar_date = events.created_date
 
     group by all
