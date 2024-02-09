@@ -33,7 +33,11 @@ monthly_subscriptions as (
         plan_name,
         pricing as monthly_amount,
         {{ dbt.date_trunc("month", "starts_at") }} as start_month,
-        {{ dbt.date_trunc("month", "ends_at") }} as end_month
+        case when ends_at is null
+            then null
+            else
+                {{ dbt.date_trunc("month", "ends_at" ) }}
+        end as end_month
 
     from subscriptions
 

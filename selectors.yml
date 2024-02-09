@@ -12,10 +12,22 @@ selectors:
     description: >
         Only resources from the dbt_project_evaluator package,
         including the root project seed: dbt_project_evaluator_exceptions.
-    default: "{{ target.type == 'duckdb' | as_bool }}"
+    default: false
     definition:
       union:
         - method: package
           value: dbt_project_evaluator
         - method: fqn
           value: dbt_project_evaluator_exceptions
+
+  - name: unit_tests
+    description: >
+        Only resources for unit tests in duckdb
+    default: false
+    definition:
+      intersection:
+        - method: tag
+          value: unit_testing
+        - exclude:
+          - method: tag
+            value: "{{ 'None' if target.type == 'duckdb' else 'unit_testing' }}"

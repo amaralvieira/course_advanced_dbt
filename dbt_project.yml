@@ -25,8 +25,8 @@ models:
 
   course_advanced_dbt:
     +materialized: view
-    +grants:
-      select: ['transformer', 'reporter']
+    #+grants:
+    #  select: "{{ ['transformer', 'reporter'] if target.type == 'snowflake' else [] }}"
 
     staging:
       +schema: staging
@@ -43,6 +43,15 @@ models:
         +schema: product
 
 seeds:
+  course_advanced_dbt:
+    dbt_project_evaluator_exceptions:
+      +enabled: "{{ target.type == 'duckdb' | as_bool }}"
+    unit_tests:
+      +database: raw
+      +schema: bingeflix
+      +enabled: "{{ target.type == 'duckdb' | as_bool }}"
+      +tags: unit_testing
+
   dbt_project_evaluator:
     dbt_project_evaluator_exceptions:
       +enabled: false

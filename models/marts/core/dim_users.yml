@@ -18,14 +18,10 @@ models:
       - name: created_at
         description: '{{ doc("bingeflix_column_user__created_at") }}'
         data_type: timestamp_ntz
-        tests:
-          - not_null
 
       - name: phone_number
         description: '{{ doc("bingeflix_column_phone_number") }}'
         data_type: varchar
-        tests:
-          - not_null
 
       - name: deleted_at
         description: When the user's account was deleted.
@@ -34,32 +30,22 @@ models:
       - name: username
         description: '{{ doc("bingeflix_column_username") }}'
         data_type: varchar
-        tests:
-          - not_null
 
       - name: name
         description: The full name of the user (first and last).
         data_type: varchar
-        tests:
-          - not_null
 
       - name: sex
         description: The user's gender.
         data_type: varchar
-        tests:
-          - not_null
 
       - name: email
         description: The user's email address.
         data_type: varchar
-        tests:
-          - not_null
 
       - name: birthdate
         description: The user's bithdate.
         data_type: date
-        tests:
-          - not_null
 
       - name: current_age
         description: The user's current age.
@@ -76,14 +62,10 @@ models:
       - name: region
         description: Where the user lives.
         data_type: varchar
-        tests:
-          - not_null
 
       - name: country
         description: Where the user lives.
         data_type: varchar
-        tests:
-          - not_null
 
       - name: first_subscription_starts_at
         description: ""

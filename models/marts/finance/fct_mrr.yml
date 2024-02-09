@@ -1,7 +1,12 @@
 models:
   - name: fct_mrr
     description: This model contains calculations for the monthly recurring revenue generated per user and subscription for each month.
-
+    config:
+      tags: unit_testing
+    tests:
+        - dbt_utils.equality:
+            enabled: "{{ target.type == 'duckdb' | as_bool }}"
+            compare_model: source('bingeflix', 'unit_tests__expected_output_agg_mrr')
     columns:
       - name: surrogate_key
         description: The surrogate key. This acts as a primary key for this model.

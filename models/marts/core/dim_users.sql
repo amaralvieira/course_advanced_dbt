@@ -19,24 +19,25 @@ users_subscription_facts as (
 
 final as (
     select
-        u.user_id,
-        created_at,
-        phone_number,
-        deleted_at,
-        username,
-        name,
-        sex,
-        email,
-        birthdate,
-        truncate(datediff(month, birthdate, current_date)/12) as current_age,
-        truncate(datediff(month, birthdate, created_at)/12) as age_at_acquisition,
-        region,
-        country,
-        usf.first_subscription_starts_at,
-        usf.count_of_subscriptions
+        users.user_id,
+        users.created_at,
+        users.phone_number,
+        users.deleted_at,
+        users.username,
+        users.name,
+        users.sex,
+        users.email,
+        users.birthdate,
+        truncate(datediff(month, users.birthdate, current_date() )/12) as current_age,
+        truncate(datediff(month, users.birthdate, users.created_at)/12) as age_at_acquisition,
+        users.region,
+        users.country,
+        users_subscription_facts.first_subscription_starts_at,
+        users_subscription_facts.count_of_subscriptions
     from
-        users as u
-        left join users_subscription_facts as usf on u.user_id = usf.user_id
+        users
+        left join users_subscription_facts
+        on users.user_id = users_subscription_facts.user_id
 )
 
 select * from final

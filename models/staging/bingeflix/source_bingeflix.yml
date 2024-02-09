@@ -145,3 +145,6 @@ sources:
             description: Where the user resides.
             tests:
               - not_null
+      - name: unit_tests__expected_output_agg_mrr
+        description: unit tests results for fct_mrr
+        enabled: "{{ target.type == 'duckdb' | as_bool }}"

@@ -1,6 +1,8 @@
 models:
   - name: dim_subscriptions
     description: This model contains information about Bingeflix subscriptions.
+    config:
+      tags: unit_testing
     columns:
       - name: subscription_id
         description: '{{ doc("bingeflix_column_subscription_id") }}'

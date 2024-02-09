@@ -5,3 +5,4 @@ logs/
 profiles.yml
 *.lock
 package-lock.yml
+raw.duckdb

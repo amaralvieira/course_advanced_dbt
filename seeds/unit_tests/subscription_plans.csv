@@ -1,0 +1,4 @@
+SUBSCRIPTION_PLAN_ID,PLAN_NAME,PRICING,PAYMENT_PERIOD
+1,"Standard with Ads",6,"monthly"
+2,"Basic",10,"monthly"
+3,"Standard",10,"monthly"
