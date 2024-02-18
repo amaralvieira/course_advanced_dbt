@@ -1,0 +1,43 @@
+models:
+  - name: fct_mrr_refactor_1
+    description: This model contains calculations for the monthly recurring revenue
+    columns:
+      - name: date_month
+        description: '{{ doc("dates_column_date_month") }}'
+
+      - name: subscription_id
+        description: '{{ doc("bingeflix_column_subscription_id") }}'
+        tests:
+          - not_null
+
+      - name: user_id
+        description: '{{ doc("bingeflix_column_user_id") }}'
+        tests:
+          - not_null
+
+      - name: starts_at
+        description: '{{ doc("bingeflix_column_subscription__starts_at") }}'
+
+      - name: ends_at
+        description: '{{ doc("bingeflix_column_subscription__ends_at") }}'
+
+      - name: plan_name
+        description: '{{ doc("bingeflix_column_plan_name") }}'
+
+      - name: monthly_amount
+        description: The amount of monthly recurring revenue generated from the subscription in a given month.
+
+      - name: start_month
+        description: ""
+
+      - name: end_month
+        description: ""
+
+      - name: change_category
+        description: ""
+
+      - name: first_subscription_month
+        description: ""
+
+      - name: month_retained_number
+        description: ""

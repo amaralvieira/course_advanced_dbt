@@ -6,3 +6,5 @@ profiles.yml
 *.lock
 package-lock.yml
 raw.duckdb
+macros/test.sql
+reports/

@@ -1,3 +1,5 @@
+version: 2
+
 models:
   - name: fct_events
     description: "This model contains information about Sessions."

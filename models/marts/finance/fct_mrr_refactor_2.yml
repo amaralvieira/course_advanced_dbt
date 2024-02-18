@@ -1,0 +1,25 @@
+models:
+  - name: fct_mrr_refactor_2
+    description: This model contains calculations for the monthly recurring revenue
+    columns:
+      - name: date_month
+        description: '{{ doc("dates_column_date_month") }}'
+        tests:
+          - not_null
+
+      - name: change_category
+        description: ""
+        tests:
+          - not_null
+
+      - name: first_subscription_month
+        description: ""
+
+      - name: is_churn
+        description: ""
+
+      - name: _in
+        description: ""
+
+      - name: _out
+        description: ""

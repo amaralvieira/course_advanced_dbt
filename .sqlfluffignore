@@ -6,3 +6,6 @@ dbt_packages/
 analysis/
 macros/
 .venv/
+
+# evidence
+reports/

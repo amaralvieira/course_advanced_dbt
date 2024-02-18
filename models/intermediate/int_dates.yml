@@ -1,3 +1,5 @@
+version: 2
+
 models:
   - name: int_dates
     description: This is a calendar table including all the consecutive dates between the 2019-01-01 and 2030-01-01.
